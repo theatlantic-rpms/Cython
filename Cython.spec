@@ -1,9 +1,10 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(0)")}
+%{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
 
 Name:		Cython
 Version:	0.9.8
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
 Group:		Development/Tools
@@ -14,7 +15,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel python-setuptools
 Requires:	python
-BuildArch:	noarch
 
 %description
 This is a development version of Pyrex, a language
@@ -44,18 +44,24 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%check
+%{__python} runtests.py
 
 %files
 %defattr(-,root,root,-)
 %{_bindir}/cython
-%{python_sitelib}/Cython
+%{python_sitearch}/Cython
 %if 0%{?fedora} >= 9
-%{python_sitelib}/Cython*egg-info
+%{python_sitearch}/Cython*egg-info
 %endif
 %doc *.txt Demos Doc Tools
 
 
 %changelog
+* Fri Jun 13 2008 Neal Becker <ndbecker2@gmail.com> - 0.9.8-2
+- Install into python_sitearch
+- Add %%check
+
 * Fri Jun 13 2008 Neal Becker <ndbecker2@gmail.com> - 0.9.8-1
 - Update to 0.9.8
 
