@@ -3,8 +3,8 @@
 
 
 Name:		Cython
-Version:	0.9.8
-Release:	2%{?dist}
+Version:	0.10
+Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
 
 Group:		Development/Tools
@@ -58,6 +58,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Nov  9 2008 Neal Becker <ndbecker2@gmail.com> - 0.10-1
+- Update to 0.10
+
 * Fri Jun 13 2008 Neal Becker <ndbecker2@gmail.com> - 0.9.8-2
 - Install into python_sitearch
 - Add %%check
