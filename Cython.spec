@@ -3,7 +3,7 @@
 
 
 Name:		Cython
-Version:	0.10
+Version:	0.10.1
 Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
 
@@ -51,6 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %{_bindir}/cython
 %{python_sitearch}/Cython
+%{python_sitearch}/pyximport
 %if 0%{?fedora} >= 9
 %{python_sitearch}/Cython*egg-info
 %endif
@@ -58,6 +59,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Nov 19 2008 Neal Becker <ndbecker2@gmail.com> - 0.10.1-1
+- Update to 0.10.1
+
+* Sun Nov  9 2008 Neal Becker <ndbecker2@gmail.com> - 0.10-3
+- Fix typo
+
 * Sun Nov  9 2008 Neal Becker <ndbecker2@gmail.com> - 0.10-1
 - Update to 0.10
 
