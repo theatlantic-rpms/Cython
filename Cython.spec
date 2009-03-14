@@ -4,7 +4,7 @@
 
 Name:		Cython
 Version:	0.11
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
 Group:		Development/Tools
@@ -51,6 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %{_bindir}/cython
 %{python_sitearch}/Cython
+%{python_sitearch}/cython.py*
 %{python_sitearch}/pyximport
 %if 0%{?fedora} >= 9
 %{python_sitearch}/Cython*egg-info
@@ -59,6 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Mar 14 2009 Neal Becker <ndbecker2@gmail.com> - 0.11-2
+- Missed cython.py*
+
 * Sat Mar 14 2009 Neal Becker <ndbecker2@gmail.com> - 0.11-1
 - Update to 0.11
 - Exclude numpy from tests so we don't have to BR it
