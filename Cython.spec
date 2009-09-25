@@ -3,14 +3,16 @@
 
 
 Name:		Cython
-Version:	0.11.2
-Release:	2%{?dist}
+Version:	0.11.3
+Release:	1.rc0%{?dist}
 Summary:	A language for writing Python extension modules
+
+%define upstreamversion %{version}.rc0
 
 Group:		Development/Tools
 License:	Python
 URL:		http://www.cython.org
-Source0:	http://www.cython.org/Cython-%{version}.tar.gz
+Source0:	http://www.cython.org/Cython-%{upstreamversion}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel python-setuptools
@@ -29,7 +31,7 @@ For more info, see:
 
 
 %prep
-%setup -q -n Cython-%{version}
+%setup -q -n %{name}-%{upstreamversion}
 
 
 %build
