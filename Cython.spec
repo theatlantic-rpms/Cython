@@ -7,7 +7,7 @@ Version:	0.11.3
 Release:	1.rc1%{?dist}
 Summary:	A language for writing Python extension modules
 
-%define upstreamversion %{version}.rc0
+%define upstreamversion %{version}.rc1
 
 Group:		Development/Tools
 License:	Python
