@@ -4,7 +4,7 @@
 
 Name:		Cython
 Version:	0.11.3
-Release:	1.rc0%{?dist}
+Release:	1.rc1%{?dist}
 Summary:	A language for writing Python extension modules
 
 %define upstreamversion %{version}.rc0
@@ -62,6 +62,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Sep 27 2009 Neal Becker <ndbecker2@gmail.com> - 0.11.3-1.rc1
+- Update to 0.11.3rc1
+
 * Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.11.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
