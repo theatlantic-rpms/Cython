@@ -6,7 +6,7 @@ Name:		Cython
 Version:	0.12.1
 #Version:	0.13
 #Release:	1.rc1%{?dist}
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	A language for writing Python extension modules
 
 ##%define upstreamversion %{version}.rc1
