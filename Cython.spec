@@ -9,8 +9,8 @@ Version:	0.12.1
 Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
-%define upstreamversion %{version}
 ##%define upstreamversion %{version}.rc1
+%define upstreamversion %{version}
 
 Group:		Development/Tools
 License:	Python
@@ -67,6 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Tue Feb  2 2010 Neal Becker <ndbecker2@gmail.com> - 0.12.1-2
 - typo
+- stupid rpm comments
 
 * Mon Nov 23 2009 Neal Becker <ndbecker2@gmail.com> - 0.12-1.rc1
 - Make that 0.12
