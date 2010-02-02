@@ -3,18 +3,19 @@
 
 
 Name:		Cython
-Version:	0.12
+Version:	0.12.1
+#Version:	0.13
 #Release:	1.rc1%{?dist}
-Release:	1%{?dist}
+Release:	3%{?dist}
 Summary:	A language for writing Python extension modules
 
-#%define upstreamversion %{version}.rc1
+##%define upstreamversion %{version}.rc1
 %define upstreamversion %{version}
 
 Group:		Development/Tools
 License:	Python
 URL:		http://www.cython.org
-Source0:	http://www.cython.org/Cython-%{upstreamversion}.tar.gz
+Source:		http://www.cython.org/Cython-%{upstreamversion}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel python-setuptools
@@ -64,6 +65,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Feb  2 2010 Neal Becker <ndbecker2@gmail.com> - 0.12.1-2
+- typo
+- stupid rpm comments
+
 * Mon Nov 23 2009 Neal Becker <ndbecker2@gmail.com> - 0.12-1.rc1
 - Make that 0.12
 
