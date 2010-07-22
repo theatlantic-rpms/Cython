@@ -6,7 +6,7 @@ Name:		Cython
 Version:	0.12.1
 #Version:	0.13
 #Release:	1.rc1%{?dist}
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	A language for writing Python extension modules
 
 ##%define upstreamversion %{version}.rc1
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Jul 21 2010 David Malcolm <dmalcolm@redhat.com> - 0.12.1-5
+- Rebuilt for https://fedoraproject.org/wiki/Features/Python_2.7/MassRebuild
+
 * Fri Feb  5 2010 Neal Becker <ndbecker2@gmail.com> - 0.12.1-4
 - Disable check for now as it fails on PPC
 
