@@ -5,7 +5,7 @@
 Name:		Cython
 Version:	0.14
 #Release:	1.beta2%{?dist}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
 #%define upstreamversion %{version}.beta2
@@ -54,6 +54,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %{_bindir}/cython
+%{_bindir}/cygdb
 %{python_sitearch}/Cython
 %{python_sitearch}/cython.py*
 %{python_sitearch}/pyximport
@@ -64,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Dec 15 2010 Neal Becker <ndbecker2@gmail.com> - 0.14-2
+- Add cygdb
+
 * Wed Dec 15 2010 Neal Becker <ndbecker2@gmail.com> - 0.14-1
 - Update to 0.14
 
