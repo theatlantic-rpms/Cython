@@ -3,12 +3,12 @@
 
 
 Name:		Cython
-Version:	0.13
-#Release:	1.rc1%{?dist}
+Version:	0.14
+#Release:	1.beta2%{?dist}
 Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
 
-##%define upstreamversion %{version}.rc1
+#%define upstreamversion %{version}.beta2
 %define upstreamversion %{version}
 
 Group:		Development/Tools
@@ -64,6 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Dec 15 2010 Neal Becker <ndbecker2@gmail.com> - 0.14-1
+- Update to 0.14
+
 * Wed Aug 25 2010 Neal Becker <ndbecker2@gmail.com> - 0.13-1
 - Update to 0.13
 
