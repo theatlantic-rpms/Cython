@@ -5,7 +5,7 @@
 Name:		Cython
 Version:	0.15
 #Release:	1.beta2%{?dist}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
 #%define upstreamversion %{version}.beta2
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Sat Aug  6 2011 Neal Becker <ndbecker2@gmail.com> - 0.15-1
 - Update to 0.15
+
+* Mon Feb 07 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.14.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
 * Sat Feb  5 2011 Neal Becker <ndbecker2@gmail.com> - 0.14.1-1
 - Update to 0.14.1
