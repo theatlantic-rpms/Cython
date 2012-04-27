@@ -68,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 * Fri Apr 27 2012 Neal Becker <ndbecker2@gmail.com> - 0.16-1
 - Update to 0.16
 
+* Thu Jan 12 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.15.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Tue Sep 20 2011 Neal Becker <ndbecker2@gmail.com> - 0.15.1-1
 - Update to 0.15.1
 
