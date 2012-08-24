@@ -5,7 +5,7 @@
 Name:		Cython
 Version:	0.16
 #Release:	1.beta2%{?dist}
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	A language for writing Python extension modules
 
 #%define upstreamversion %{version}.beta2
@@ -58,13 +58,16 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitearch}/Cython
 %{python_sitearch}/cython.py*
 %{python_sitearch}/pyximport
-%if 0%{?fedora} >= 9
+%if 0%{?fedora} >= 9 || 0%{?rhel} >= 6
 %{python_sitearch}/Cython*egg-info
 %endif
 %doc *.txt Demos Doc Tools
 
 
 %changelog
+* Fri Aug 24 2012 David Malcolm <dmalcolm@redhat.com> - 0.16-3
+- generalize egg-info logic to support RHEL (rhbz#851528)
+
 * Wed Jul 18 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.16-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
