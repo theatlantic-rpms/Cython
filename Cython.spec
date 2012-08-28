@@ -3,13 +3,13 @@
 
 
 Name:		Cython
-Version:	0.16
-#Release:	1.beta2%{?dist}
-Release:	3%{?dist}
+Version:	0.17
+Release:	1.b3%{?dist}
+#Release:	3%{?dist}
 Summary:	A language for writing Python extension modules
 
-#%define upstreamversion %{version}.beta2
-%define upstreamversion %{version}
+%define upstreamversion %{version}.b3
+#%define upstreamversion %{version}
 
 Group:		Development/Tools
 License:	Python
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Aug 28 2012 Neal Becker <ndbecker2@gmail.com> - 0.17-1.b3
+- Test 0.17b3
+
 * Fri Aug 24 2012 David Malcolm <dmalcolm@redhat.com> - 0.16-3
 - generalize egg-info logic to support RHEL (rhbz#851528)
 
