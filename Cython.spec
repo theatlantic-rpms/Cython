@@ -19,7 +19,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel python-setuptools
 # only for check!	
-BuildRequires:	numpy
+BuildRequires:	numpy libtool
 Requires:	python
 
 %description
