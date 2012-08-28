@@ -4,7 +4,7 @@
 
 Name:		Cython
 Version:	0.17
-Release:	3.b3%{?dist}
+Release:	4.b3%{?dist}
 ##Release:	3%{?dist}
 Summary:	A language for writing Python extension modules
 
@@ -18,6 +18,7 @@ Source:		http://www.cython.org/Cython-%{upstreamversion}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel python-setuptools
+BuildRequries:  numpy		# only for check!
 Requires:	python
 
 %description
@@ -67,6 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Tue Aug 28 2012 Neal Becker <ndbecker2@gmail.com> - 0.17-3.b3
 - Turn on check (temporarily)
+- Add br numpy from check
 
 * Tue Aug 28 2012 Neal Becker <ndbecker2@gmail.com> - 0.17-1.b3
 - Test 0.17b3
