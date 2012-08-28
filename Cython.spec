@@ -4,7 +4,7 @@
 
 Name:		Cython
 Version:	0.17
-Release:	2.b3%{?dist}
+Release:	3.b3%{?dist}
 ##Release:	3%{?dist}
 Summary:	A language for writing Python extension modules
 
@@ -48,8 +48,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-##%%check
-##%%{__python} runtests.py -x numpy
+%check
+%{__python} runtests.py -x numpy
 
 %files
 %defattr(-,root,root,-)
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Aug 28 2012 Neal Becker <ndbecker2@gmail.com> - 0.17-3.b3
+- Turn on check (temporarily)
+
 * Tue Aug 28 2012 Neal Becker <ndbecker2@gmail.com> - 0.17-1.b3
 - Test 0.17b3
 
