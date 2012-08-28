@@ -4,12 +4,12 @@
 
 Name:		Cython
 Version:	0.17
-Release:	1.b3%{?dist}
-#Release:	3%{?dist}
+Release:	2.b3%{?dist}
+##Release:	3%{?dist}
 Summary:	A language for writing Python extension modules
 
-%define upstreamversion %{version}.b3
-#%define upstreamversion %{version}
+##%%define upstreamversion %{version}
+%define upstreamversion %{version}b3
 
 Group:		Development/Tools
 License:	Python
