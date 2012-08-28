@@ -18,7 +18,8 @@ Source:		http://www.cython.org/Cython-%{upstreamversion}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel python-setuptools
-BuildRequries:  numpy		# only for check!
+# only for check!	
+BuildRequires:	numpy
 Requires:	python
 
 %description
