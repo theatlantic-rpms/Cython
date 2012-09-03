@@ -1,15 +1,16 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(0)")}
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
+%define run_check 0%{!?_without_check:1}
 
 Name:		Cython
 Version:	0.17
-Release:	4.b3%{?dist}
-##Release:	3%{?dist}
+##Release:	4.b3%{?dist}
+Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
 
-##%%define upstreamversion %{version}
-%define upstreamversion %{version}b3
+%define upstreamversion %{version}
+##%define upstreamversion %{version}b3
 
 Group:		Development/Tools
 License:	Python
@@ -18,8 +19,9 @@ Source:		http://www.cython.org/Cython-%{upstreamversion}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel python-setuptools
-# only for check!	
+%if 0%{run_check}
 BuildRequires:	numpy libtool
+%endif
 Requires:	python
 
 %description
@@ -50,8 +52,10 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if 0%{run_check}
 %check
 %{__python} runtests.py -x numpy
+%endif
 
 %files
 %defattr(-,root,root,-)
@@ -67,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Sep  3 2012 Neal Becker <ndbecker2@gmail.com> - 0.17-1
+- Update to 0.17
+
 * Tue Aug 28 2012 Neal Becker <ndbecker2@gmail.com> - 0.17-3.b3
 - Turn on check (temporarily)
 - Add br numpy from check
