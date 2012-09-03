@@ -10,7 +10,7 @@ Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
 
 %define upstreamversion %{version}
-##%define upstreamversion %{version}b3
+##%%define upstreamversion %{version}b3
 
 Group:		Development/Tools
 License:	Python
