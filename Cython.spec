@@ -7,11 +7,11 @@
 
 %global srcname distribute
 
-##%define run_check 0%{!?_without_check:1}
-%define run_check 0%{!?_with_check:0}
+%define run_check 0%{!?_without_check:1}
+##%define run_check 0%{!?_with_check:0}
 
 Name:		Cython
-Version:	0.17.2
+Version:	0.17.3
 ##Release:	4.b3%{?dist}
 Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
@@ -107,7 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %if 0%{run_check}
 %check
-%{__python} runtests.py -x numpy
+%{__python} runtests.py
 
 %if 0%{?with_python3}
 pushd %{py3dir}
@@ -140,6 +140,9 @@ popd
 
 
 %changelog
+* Sat Dec 15 2012 Neal Becker <ndbecker2@gmail.com> - 0.17.3-1
+- Update to 0.17.3
+
 * Wed Nov 21 2012 Neal Becker <ndbecker2@gmail.com> - 0.17.2-1
 - update to 0.17.2
 
