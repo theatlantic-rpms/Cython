@@ -16,7 +16,7 @@ Version:	0.19
 Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
-%define upstreamversion %{version}
+%define upstreamversion %{version}-%{release}
 ##%%define upstreamversion %{version}b3
 
 Group:		Development/Tools
