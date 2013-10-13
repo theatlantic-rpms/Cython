@@ -11,12 +11,12 @@
 ##%define run_check 0%{!?_with_check:0}
 
 Name:		Cython
-Version:	0.19
+Version:	0.19.2
 ##Release:	4.b3%{?dist}
-Release:	2%{?dist}
+Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
 
-%define upstreamversion %{version}-%{release}
+%define upstreamversion %{version}
 ##%%define upstreamversion %{version}b3
 
 Group:		Development/Tools
