@@ -143,6 +143,9 @@ popd
 * Sun Oct 13 2013 nbecker <ndbecker2@gmail.com> - 0.19-2
 - Update to 0.19.2
 
+* Fri Aug 02 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.19-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Fri Apr 19 2013 nbecker <ndbecker2@gmail.com> - 0.19-1
 - Update to 0.19
 
