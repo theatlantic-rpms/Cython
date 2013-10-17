@@ -13,7 +13,7 @@
 Name:		Cython
 Version:	0.19.2
 ##Release:	4.b3%{?dist}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
 %define upstreamversion %{version}
@@ -99,7 +99,7 @@ popd
 %endif
 
 %{__python} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
-rm -rf ${buildroot}%{python_sitelib}/setuptools/tests
+rm -rf %{buildroot}%{python_sitelib}/setuptools/tests
 
 
 %clean
@@ -140,6 +140,9 @@ popd
 
 
 %changelog
+* Thu Oct 17 2013 nbecker <ndbecker2@gmail.com> - 0.19.2-2
+- Fix BR 1019498
+
 * Sun Oct 13 2013 nbecker <ndbecker2@gmail.com> - 0.19-2
 - Update to 0.19.2
 
