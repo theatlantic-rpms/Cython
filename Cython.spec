@@ -11,7 +11,7 @@
 ##%define run_check 0%{!?_with_check:0}
 
 Name:		Cython
-Version:	0.20
+Version:	0.20.1
 ##Release:	4.b3%{?dist}
 Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
@@ -22,7 +22,7 @@ Summary:	A language for writing Python extension modules
 Group:		Development/Tools
 License:	Python
 URL:		http://www.cython.org
-Source:		http://www.cython.org/Cython-%{upstreamversion}.tar.gz
+Source:		http://www.cython.org/release/Cython-%{upstreamversion}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel python-setuptools
@@ -140,6 +140,9 @@ popd
 
 
 %changelog
+* Fri May  9 2014 Orion Poplawski <orion@cora.nwra.com> - 0.20.1-1
+- Update to 0.20.1
+
 * Mon Jan 20 2014 nbecker <ndbecker2@gmail.com> - 0.20-1
 - Update to 0.20
 
