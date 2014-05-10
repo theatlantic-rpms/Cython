@@ -117,7 +117,6 @@ popd
 %endif
 
 %files
-%defattr(-,root,root,-)
 %{_bindir}/cython
 %{_bindir}/cygdb
 %{python_sitearch}/Cython
