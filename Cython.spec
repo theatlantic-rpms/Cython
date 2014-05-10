@@ -13,7 +13,7 @@
 Name:		Cython
 Version:	0.20.1
 ##Release:	4.b3%{?dist}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
 %define upstreamversion %{version}
@@ -139,6 +139,9 @@ popd
 
 
 %changelog
+* Fri May  9 2014 Orion Poplawski <orion@cora.nwra.com> - 0.20.1-2
+- Rebuild for Python 3.4
+
 * Fri May  9 2014 Orion Poplawski <orion@cora.nwra.com> - 0.20.1-1
 - Update to 0.20.1
 
