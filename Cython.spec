@@ -13,7 +13,7 @@
 Name:		Cython
 Version:	0.20.1
 ##Release:	4.b3%{?dist}
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	A language for writing Python extension modules
 
 %define upstreamversion %{version}
@@ -139,6 +139,9 @@ popd
 
 
 %changelog
+* Fri Jun 06 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.20.1-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Wed May 28 2014 Thomas Spura <tomspur@fedoraproject.org> - 0.20.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Changes/Python_3.4
 
