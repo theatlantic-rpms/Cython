@@ -13,7 +13,7 @@
 Name:		Cython
 Version:	0.21
 ##Release:	4.b3%{?dist}
-Release:	1%{?dist}
+Release:	5%{?dist}
 Summary:	A language for writing Python extension modules
 
 %define upstreamversion %{version}
@@ -22,7 +22,7 @@ Summary:	A language for writing Python extension modules
 Group:		Development/Tools
 License:	Python
 URL:		http://www.cython.org
-Source:		http://www.cython.org/Cython-%{upstreamversion}.tar.gz
+Source:		http://www.cython.org/release/Cython-%{upstreamversion}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel python-setuptools
@@ -117,7 +117,6 @@ popd
 %endif
 
 %files
-%defattr(-,root,root,-)
 %{_bindir}/cython
 %{_bindir}/cygdb
 %{python_sitearch}/Cython
@@ -142,6 +141,21 @@ popd
 %changelog
 * Mon Sep 15 2014 nbecker <ndbecker2@gmail.com> - 0.21-1
 - Update to 0.21
+
+* Fri Aug 15 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.20.1-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
+
+* Fri Jun 06 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.20.1-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Wed May 28 2014 Thomas Spura <tomspur@fedoraproject.org> - 0.20.1-3
+- Rebuilt for https://fedoraproject.org/wiki/Changes/Python_3.4
+
+* Fri May  9 2014 Orion Poplawski <orion@cora.nwra.com> - 0.20.1-2
+- Rebuild for Python 3.4
+
+* Fri May  9 2014 Orion Poplawski <orion@cora.nwra.com> - 0.20.1-1
+- Update to 0.20.1
 
 * Mon Jan 20 2014 nbecker <ndbecker2@gmail.com> - 0.20-1
 - Update to 0.20
