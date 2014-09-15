@@ -13,7 +13,7 @@
 Name:		Cython
 Version:	0.21
 ##Release:	4.b3%{?dist}
-Release:	5%{?dist}
+Release:	6%{?dist}
 Summary:	A language for writing Python extension modules
 
 %define upstreamversion %{version}
@@ -119,6 +119,7 @@ popd
 %files
 %{_bindir}/cython
 %{_bindir}/cygdb
+%{_bindir}/cythonize
 %{python_sitearch}/Cython
 %{python_sitearch}/cython.py*
 %{python_sitearch}/pyximport
@@ -139,6 +140,9 @@ popd
 
 
 %changelog
+* Mon Sep 15 2014 nbecker <ndbecker2@gmail.com> - 0.21-5
+- Add /bin/cythonize
+
 * Mon Sep 15 2014 nbecker <ndbecker2@gmail.com> - 0.21-1
 - Update to 0.21
 
