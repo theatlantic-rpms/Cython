@@ -11,7 +11,7 @@
 ##%define run_check 0%{!?_with_check:0}
 
 Name:		Cython
-Version:	0.20
+Version:	0.21
 ##Release:	4.b3%{?dist}
 Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
@@ -140,6 +140,9 @@ popd
 
 
 %changelog
+* Mon Sep 15 2014 nbecker <ndbecker2@gmail.com> - 0.21-1
+- Update to 0.21
+
 * Mon Jan 20 2014 nbecker <ndbecker2@gmail.com> - 0.20-1
 - Update to 0.20
 
