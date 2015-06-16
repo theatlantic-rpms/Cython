@@ -13,7 +13,7 @@
 Name:		Cython
 Version:	0.22
 ##Release:	4.b3%{?dist}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
 %define upstreamversion %{version}
@@ -140,6 +140,9 @@ popd
 
 
 %changelog
+* Tue Jun 16 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.22-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Fri Feb 13 2015 nbecker <ndbecker2@gmail.com> - 0.22-1
 - oops, that should be 0.22 not 0.22.1
 
