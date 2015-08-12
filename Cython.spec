@@ -11,9 +11,9 @@
 ##%define run_check 0%{!?_with_check:0}
 
 Name:		Cython
-Version:	0.22
+Version:	0.23
 ##Release:	4.b3%{?dist}
-Release:	2%{?dist}
+Release:	1%{?dist}
 Summary:	A language for writing Python extension modules
 
 %define upstreamversion %{version}
@@ -140,6 +140,9 @@ popd
 
 
 %changelog
+* Wed Aug 12 2015 Neal Becker <ndbecker2@gmail.com> - 0.23-2
+- Update to 0.23
+
 * Tue Jun 16 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.22-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
