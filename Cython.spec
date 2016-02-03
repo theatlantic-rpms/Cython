@@ -9,7 +9,7 @@
 Name:		Cython
 Version:	0.23.4
 ##Release:	4.b3%{?dist}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A language for writing Python extension modules
 
 %global upstreamversion %{version}
@@ -130,6 +130,9 @@ rm -rf %{buildroot}%{python_sitelib}/setuptools/tests
 
 
 %changelog
+* Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.23.4-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Wed Jan 13 2016 Orion Poplawski <orion@cora.nwra.com> - 0.23.4-1
 - Update to 0.23.4
 - Ship cythonize3
