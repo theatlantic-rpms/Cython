@@ -9,7 +9,7 @@
 Name:		Cython
 Version:	0.23.4
 ##Release:	4.b3%{?dist}
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	A language for writing Python extension modules
 
 %global upstreamversion %{version}
