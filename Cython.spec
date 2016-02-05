@@ -19,7 +19,7 @@ Group:		Development/Tools
 License:	Python
 URL:		http://www.cython.org
 Source:		http://www.cython.org/release/%{srcname}-%{upstreamversion}.tar.gz
-
+Patch0:	gcc6.patch
 BuildRequires:	python-devel python-setuptools
 %if 0%{?with_python3}
 BuildRequires:	python3-devel
@@ -69,7 +69,7 @@ For more info, see:
 
 %prep
 %setup -q -n %{name}-%{upstreamversion}
-
+%patch0 -p1
 
 %build
 %py2_build
