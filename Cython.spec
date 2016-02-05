@@ -97,7 +97,7 @@ rm -rf %{buildroot}%{python_sitelib}/setuptools/tests
 
 %if %{with check}
 %check
-%{__python} runtests.py -vv || gcc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -I/builddir/build/BUILD/Cython-0.23.4/tests/run -I/usr/include/python2.7 -c $(find . -name complex_numbers_c89_T398.cpp) -o /builddir/build/BUILD/Cython-0.23.4/BUILD/run/cpp/complex_numbers_c89_T398/complex_numbers_c89_T398.o -DCYTHON_REFNANNY=1
+%{__python} runtests.py -vv || gcc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -I/builddir/build/BUILD/Cython-0.23.4/tests/run -I/usr/include/python2.7 -c $$(find . -name complex_numbers_c89_T398.cpp) -o /builddir/build/BUILD/Cython-0.23.4/BUILD/run/cpp/complex_numbers_c89_T398/complex_numbers_c89_T398.o -DCYTHON_REFNANNY=1
 
 %if 0%{?with_python3}
 # asyncio test fails
