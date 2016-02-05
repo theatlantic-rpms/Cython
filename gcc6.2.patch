@@ -1,0 +1,22 @@
+From a2bec15e0db9ebdd22504268c15bfa059b44f72f Mon Sep 17 00:00:00 2001
+From: Robert Bradshaw <robertwb@gmail.com>
+Date: Fri, 5 Feb 2016 13:16:05 -0800
+Subject: [PATCH] Really fix complex numbers.
+
+---
+ Cython/Compiler/PyrexTypes.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Cython/Compiler/PyrexTypes.py b/Cython/Compiler/PyrexTypes.py
+index 0e1fbf5..890b2d1 100644
+--- a/Cython/Compiler/PyrexTypes.py
++++ b/Cython/Compiler/PyrexTypes.py
+@@ -2061,7 +2061,7 @@ def cast_code(self, expr_code):
+     #define __Pyx_CIMAG(z) ((z).imag)
+ #endif
+ 
+-#if defined(__cplusplus) && !CYTHON_COMPLEX \
++#if defined(__cplusplus) && CYTHON_CCOMPLEX \
+         && (defined(_WIN32) || defined(__clang__) || (defined(__GNUC__) && GCC_VERSION >= 40400) || __cplusplus >= 201103)
+     #define __Pyx_SET_CREAL(z,x) ((z).real(x))
+     #define __Pyx_SET_CIMAG(z,y) ((z).imag(y))
