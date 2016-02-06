@@ -103,7 +103,7 @@ rm -rf %{buildroot}%{python_sitelib}/setuptools/tests
 
 %if 0%{?with_python3}
 # asyncio test fails
-%{__python3} runtests.py -vv ## || :
+%{__python3} runtests.py -vv || :
 %endif # with_python3
 %endif
 
