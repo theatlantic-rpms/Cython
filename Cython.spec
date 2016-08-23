@@ -1,30 +1,18 @@
-%if 0%{?fedora}
-%global with_python3 1
-%endif
-
 %global srcname Cython
+%global upname cython
 
-%bcond_without check
+%bcond_with check
 
 Name:		Cython
-Version:	0.23.4
-##Release:	4.b3%{?dist}
+Version:	0.24.1
 Release:	4%{?dist}
 Summary:	A language for writing Python extension modules
-
-%global upstreamversion %{version}
-##%%global upstreamversion %{version}b3
 
 Group:		Development/Tools
 License:	Python
 URL:		http://www.cython.org
-Source:		http://www.cython.org/release/%{srcname}-%{upstreamversion}.tar.gz
-Patch0:	gcc6.patch
-Patch1: gcc6.2.patch
+Source:		https://github.com/cython/cython/archive/%{version}/%{srcname}-%{version}.tar.gz
 BuildRequires:	python-devel python-setuptools
-%if 0%{?with_python3}
-BuildRequires:	python3-devel
-%endif # if with_python3
 
 %if %{with check}
 BuildRequires:	libtool
@@ -35,21 +23,17 @@ BuildRequires:	numpy
 
 Provides:	python2-%{srcname} = %{version}-%{release}
 
-%description
-This is a development version of Pyrex, a language
+%global _description \
+This is a development version of Pyrex, a language\
 for writing Python extension modules.
 
-For more info, see:
+%description %{_description}
 
-    Doc/About.html for a description of the language
-    INSTALL.txt	   for installation instructions
-    USAGE.txt	   for usage instructions
-    Demos	   for usage examples
+Python 2 version.
 
-%if 0%{?with_python3}
 %package -n python3-%{srcname}
 Summary:	A language for writing Python extension modules
-Group:		Development/Tools
+BuildRequires:	python3-devel
 %if %{with check}
 # Coverage tests fail
 #BuildRequires:	python3-coverage
@@ -66,72 +50,63 @@ For more info, see:
     INSTALL.txt	   for installation instructions
     USAGE.txt	   for usage instructions
     Demos	   for usage examples
-%endif # with_python3
 
 %prep
-%setup -q -n %{name}-%{upstreamversion}
-%patch0 -p1
-%patch1 -p1
+%autosetup -n %{upname}-%{version} -p1
 
 %build
 %py2_build
-
-%if 0%{?with_python3}
 %py3_build
-%endif # with_python3
-
 
 %install
 # Must do the python3 install first because the scripts in /usr/bin are
 # overwritten with every setup.py install (and we want the python2 version
 # to be the default for now).
-%if 0%{?with_python3}
 %py3_install
-mv $RPM_BUILD_ROOT/usr/bin/cython $RPM_BUILD_ROOT/usr/bin/cython3
-mv $RPM_BUILD_ROOT/usr/bin/cythonize $RPM_BUILD_ROOT/usr/bin/cythonize3
-mv $RPM_BUILD_ROOT/usr/bin/cygdb $RPM_BUILD_ROOT/usr/bin/cygdb3
+for bin in cython cythonize cygdb; do
+  mv %{buildroot}%{_bindir}/${bin} %{buildroot}%{_bindir}/${bin}3
+done
 rm -rf %{buildroot}%{python3_sitelib}/setuptools/tests
-%endif
 
 %py2_install
-rm -rf %{buildroot}%{python_sitelib}/setuptools/tests
-
+rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 
 %if %{with check}
 %check
 %{__python} runtests.py -vv ##|| gcc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -I/builddir/build/BUILD/Cython-0.23.4/tests/run -I/usr/include/python2.7 -c $$(find . -name complex_numbers_c89_T398.cpp) -o /builddir/build/BUILD/Cython-0.23.4/BUILD/run/cpp/complex_numbers_c89_T398/complex_numbers_c89_T398.o -DCYTHON_REFNANNY=1
 
-%if 0%{?with_python3}
 # asyncio test fails
 %{__python3} runtests.py -vv || :
-%endif # with_python3
 %endif
 
 
 %files
-%{!?_licensedir:%global license %doc}
 %license LICENSE.txt
 %doc *.txt Demos Doc Tools
 %{_bindir}/cython
 %{_bindir}/cygdb
 %{_bindir}/cythonize
-%{python_sitearch}/%{srcname}
-%{python_sitearch}/cython.py*
-%{python_sitearch}/pyximport
-%{python_sitearch}/%{srcname}*egg-info
+%{python2_sitearch}/%{srcname}-*.egg-info/
+%{python2_sitearch}/%{srcname}/
+%{python2_sitearch}/pyximport/
+%{python2_sitearch}/%{upname}.py*
 
-%if 0%{?with_python3}
 %files -n python3-%{srcname}
 %license LICENSE.txt
 %doc *.txt Demos Doc Tools
-%{python3_sitearch}/*
 %{_bindir}/cython3
 %{_bindir}/cythonize3
 %{_bindir}/cygdb3
-%endif # with_python3
-
+%{python3_sitearch}/%{srcname}-*.egg-info/
+%{python3_sitearch}/%{srcname}/
+%{python3_sitearch}/pyximport/
+%{python3_sitearch}/%{upname}.py
+%{python3_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Tue Aug 23 2016 Igor Gnatenko <ignatenko@redhat.com> - 0.24.1-4
+- Update to 0.24.1
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.23.4-4
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
