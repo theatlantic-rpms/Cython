@@ -3,25 +3,19 @@
 
 %bcond_with check
 
-Name:		Cython
-Version:	0.24.1
-Release:	4%{?dist}
-Summary:	A language for writing Python extension modules
+Name:           Cython
+Version:        0.24.1
+Release:        5%{?dist}
+Summary:        A language for writing Python extension modules
 
-Group:		Development/Tools
-License:	Python
-URL:		http://www.cython.org
-Source:		https://github.com/cython/cython/archive/%{version}/%{srcname}-%{version}.tar.gz
-BuildRequires:	python-devel python-setuptools
+License:        Python
+URL:            http://www.cython.org
+Source:         https://github.com/cython/cython/archive/%{version}/%{srcname}-%{version}.tar.gz
 
+BuildRequires:  gcc
 %if %{with check}
-BuildRequires:	libtool
-BuildRequires:	numpy
-# Coverage tests fail
-#BuildRequires:	python-coverage
+BuildRequires:  gcc-c++
 %endif
-
-Provides:	python2-%{srcname} = %{version}-%{release}
 
 %global _description \
 This is a development version of Pyrex, a language\
@@ -29,27 +23,34 @@ for writing Python extension modules.
 
 %description %{_description}
 
+%package -n python2-%{srcname}
+Summary:        %{summary}
+%{?python_provide:%python_provide python2-%{srcname}}
+BuildRequires:  python2-devel
+BuildRequires:  python2-setuptools
+%if %{with check}
+BuildRequires:  python2-coverage
+BuildRequires:  python2-numpy
+BuildRequires:  python-jedi
+%endif
+
+%description -n python2-%{srcname} %{_description}
+
 Python 2 version.
 
 %package -n python3-%{srcname}
-Summary:	A language for writing Python extension modules
-BuildRequires:	python3-devel
+Summary:        %{summary}
+%{?python_provide:%python_provide python3-%{srcname}}
+BuildRequires:  python3-devel
 %if %{with check}
-# Coverage tests fail
-#BuildRequires:	python3-coverage
-BuildRequires:	python3-numpy
+BuildRequires:  python3-coverage
+BuildRequires:  python3-numpy
+BuildRequires:  python3-jedi
 %endif
 
-%description -n python3-%{srcname}
-This is a development version of Pyrex, a language
-for writing Python extension modules.
+%description -n python3-%{srcname} %{_description}
 
-For more info, see:
-
-    Doc/About.html for a description of the language
-    INSTALL.txt	   for installation instructions
-    USAGE.txt	   for usage instructions
-    Demos	   for usage examples
+Python 3 version.
 
 %prep
 %autosetup -n %{upname}-%{version} -p1
@@ -73,12 +74,9 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 
 %if %{with check}
 %check
-%{__python} runtests.py -vv ##|| gcc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -I/builddir/build/BUILD/Cython-0.23.4/tests/run -I/usr/include/python2.7 -c $$(find . -name complex_numbers_c89_T398.cpp) -o /builddir/build/BUILD/Cython-0.23.4/BUILD/run/cpp/complex_numbers_c89_T398/complex_numbers_c89_T398.o -DCYTHON_REFNANNY=1
-
-# asyncio test fails
-%{__python3} runtests.py -vv || :
+%{__python2} runtests.py -v
+%{__python3} runtests.py -v
 %endif
-
 
 %files
 %license LICENSE.txt
@@ -104,6 +102,9 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{python3_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Thu Aug 25 2016 Igor Gnatenko <ignatenko@redhat.com> - 0.24.1-5
+- Use %%python_provide
+
 * Tue Aug 23 2016 Igor Gnatenko <ignatenko@redhat.com> - 0.24.1-4
 - Update to 0.24.1
 
