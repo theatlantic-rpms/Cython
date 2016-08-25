@@ -5,7 +5,7 @@
 
 Name:           Cython
 Version:        0.24.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        A language for writing Python extension modules
 
 License:        Python
@@ -26,6 +26,8 @@ for writing Python extension modules.
 %package -n python2-%{srcname}
 Summary:        %{summary}
 %{?python_provide:%python_provide python2-%{srcname}}
+Provides:       Cython = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      Cython < 0.24.1-6
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 %if %{with check}
@@ -74,8 +76,8 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 
 %if %{with check}
 %check
-%{__python2} runtests.py -v
-%{__python3} runtests.py -v
+%{__python2} runtests.py -vv
+%{__python3} runtests.py -vv
 %endif
 
 %files
@@ -102,6 +104,9 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{python3_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Thu Aug 25 2016 Igor Gnatenko <ignatenko@redhat.com> - 0.24.1-6
+- Provide old names
+
 * Thu Aug 25 2016 Igor Gnatenko <ignatenko@redhat.com> - 0.24.1-5
 - Use %%python_provide
 
