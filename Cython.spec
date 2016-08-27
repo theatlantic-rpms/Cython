@@ -5,7 +5,7 @@
 
 Name:           Cython
 Version:        0.24.1
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        A language for writing Python extension modules
 
 License:        Python
@@ -80,7 +80,7 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{__python3} runtests.py -vv
 %endif
 
-%files
+%files -n python2-%{srcname}
 %license LICENSE.txt
 %doc *.txt Demos Doc Tools
 %{_bindir}/cython
@@ -104,6 +104,9 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{python3_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Sat Aug 27 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.24.1-8
+- Fix provides (RHBZ #1370879)
+
 * Thu Aug 25 2016 Igor Gnatenko <ignatenko@redhat.com> - 0.24.1-7
 - Run test suite
 
