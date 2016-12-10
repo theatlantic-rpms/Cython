@@ -4,8 +4,8 @@
 %bcond_without tests
 
 Name:           Cython
-Version:        0.24.1
-Release:        8%{?dist}
+Version:        0.25.2
+Release:        1%{?dist}
 Summary:        A language for writing Python extension modules
 
 License:        Python
@@ -27,7 +27,7 @@ for writing Python extension modules.
 Summary:        %{summary}
 %{?python_provide:%python_provide python2-%{srcname}}
 Provides:       Cython = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      Cython < 0.24.1-6
+Obsoletes:      Cython < %{?epoch:%{epoch}:}%{version}-%{release}
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 %if %{with tests}
@@ -104,6 +104,9 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{python3_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Sat Dec 10 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.25.2-1
+- Update to 0.25.2
+
 * Sat Aug 27 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.24.1-8
 - Fix provides (RHBZ #1370879)
 
