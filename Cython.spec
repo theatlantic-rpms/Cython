@@ -1,7 +1,8 @@
 %global srcname Cython
 %global upname cython
 
-%bcond_without tests
+# https://github.com/cython/cython/issues/1548
+%bcond_with tests
 
 Name:           Cython
 Version:        0.25.2
