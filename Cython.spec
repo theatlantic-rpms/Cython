@@ -6,7 +6,7 @@
 
 Name:           Cython
 Version:        0.25.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A language for writing Python extension modules
 
 License:        Python
@@ -105,6 +105,9 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{python3_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Mon Dec 12 2016 Charalampos Stratakis <cstratak@redhat.com> - 0.25.2-2
+- Rebuild for Python 3.6
+
 * Sat Dec 10 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.25.2-1
 - Update to 0.25.2
 
