@@ -6,12 +6,19 @@
 
 Name:           Cython
 Version:        0.25.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A language for writing Python extension modules
 
 License:        Python
 URL:            http://www.cython.org
 Source:         https://github.com/cython/cython/archive/%{version}/%{srcname}-%{version}.tar.gz
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1406533
+# https://github.com/cython/cython/pull/1560
+Patch0001:      0001-fix-typo-in-Compiler-Options.py.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=1406905
+# https://github.com/cython/cython/pull/483
+Patch0002:      0001-Check-sys.path-for-.pxi-files-too.patch
 
 BuildRequires:  gcc
 %if %{with tests}
@@ -105,6 +112,9 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{python3_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Thu Dec 22 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.25.2-3
+- Backport couple of patches
+
 * Mon Dec 12 2016 Charalampos Stratakis <cstratak@redhat.com> - 0.25.2-2
 - Rebuild for Python 3.6
 
