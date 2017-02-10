@@ -6,7 +6,7 @@
 
 Name:           Cython
 Version:        0.25.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A language for writing Python extension modules
 
 License:        Python
@@ -112,6 +112,9 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{python3_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.25.2-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Thu Dec 22 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.25.2-3
 - Backport couple of patches
 
