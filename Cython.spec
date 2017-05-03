@@ -6,10 +6,10 @@
 
 Name:           Cython
 Version:        0.25.2
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A language for writing Python extension modules
 
-License:        Python
+License:        ASL 2.0
 URL:            http://www.cython.org
 Source:         https://github.com/cython/cython/archive/%{version}/%{srcname}-%{version}.tar.gz
 
@@ -112,6 +112,9 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{python3_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Wed May 03 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.25.2-5
+- Fix license
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.25.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
