@@ -1,12 +1,19 @@
 %global srcname Cython
 %global upname cython
 
+%{!?python2_wheelsuffix: %define python2_wheelsuffix %(%{__python} -c 'from wheel.pep425tags import get_abbr_impl, get_impl_ver, get_abi_tag; from distutils.util import get_platform; print("-".join([get_abbr_impl() + get_impl_ver(), get_abi_tag(), get_platform().replace("-", "_").replace(".", "_")]))')}
+%global python2_wheelname %{srcname}-%{version}-%{python2_wheelsuffix}.whl
+%global python2_record %{python2_sitearch}/%{srcname}-%{version}.dist-info/RECORD
+%{!?python36_wheelsuffix: %define python36_wheelsuffix %(%{__python36} -c 'from wheel.pep425tags import get_abbr_impl, get_impl_ver, get_abi_tag; from distutils.util import get_platform; print("-".join([get_abbr_impl() + get_impl_ver(), get_abi_tag(), get_platform().replace("-", "_").replace(".", "_")]))')}
+%global python36_wheelname %{srcname}-%{version}-%{python36_wheelsuffix}.whl
+%global python36_record %{python36_sitearch}/%{srcname}-%{version}.dist-info/RECORD
+
 # https://github.com/cython/cython/issues/1548
 %bcond_with tests
 
 Name:           Cython
 Version:        0.25.2
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        A language for writing Python extension modules
 
 License:        ASL 2.0
@@ -24,6 +31,13 @@ BuildRequires:  gcc
 %if %{with tests}
 BuildRequires:  gcc-c++
 %endif
+BuildRequires:  python2-devel
+BuildRequires:  python2-setuptools
+BuildRequires:  python2-pip
+BuildRequires:  python2-wheel
+BuildRequires:  python36u-devel
+BuildRequires:  python36u-pip
+BuildRequires:  python36u-wheel
 
 %global _description \
 This is a development version of Pyrex, a language\
@@ -36,8 +50,6 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python2-%{srcname}}
 Provides:       Cython = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      Cython < %{?epoch:%{epoch}:}%{version}-%{release}
-BuildRequires:  python2-devel
-BuildRequires:  python2-setuptools
 %if %{with tests}
 BuildRequires:  python2-coverage
 BuildRequires:  python2-numpy
@@ -48,17 +60,16 @@ BuildRequires:  python-jedi
 
 Python 2 version.
 
-%package -n python3-%{srcname}
+%package -n python36u-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-%{srcname}}
-BuildRequires:  python3-devel
+# %{?python_provide:%python_provide python3-%{srcname}}
 %if %{with tests}
-BuildRequires:  python3-coverage
-BuildRequires:  python3-numpy
-BuildRequires:  python3-jedi
+BuildRequires:  python36u-coverage
+BuildRequires:  python36u-numpy
+BuildRequires:  python36u-jedi
 %endif
 
-%description -n python3-%{srcname} %{_description}
+%description -n python36u-%{srcname} %{_description}
 
 Python 3 version.
 
@@ -66,26 +77,27 @@ Python 3 version.
 %autosetup -n %{upname}-%{version} -p1
 
 %build
-%py2_build
-%py3_build
+%py2_build_wheel
+%py36_build_wheel
 
 %install
 # Must do the python3 install first because the scripts in /usr/bin are
 # overwritten with every setup.py install (and we want the python2 version
 # to be the default for now).
-%py3_install
+pip%{python36_version} install -I dist/%{python36_wheelname} --root %{buildroot} --strip-file-prefix %{buildroot} --no-deps
 for bin in cython cythonize cygdb; do
-  mv %{buildroot}%{_bindir}/${bin} %{buildroot}%{_bindir}/${bin}3
+  mv %{buildroot}%{_bindir}/${bin} %{buildroot}%{_bindir}/${bin}%{python36_version}
 done
-rm -rf %{buildroot}%{python3_sitelib}/setuptools/tests
+perl -pi -e 's/(\/bin\/(?:cython|cythonize|cygdb)),/${1}%{python36_version},/g' %{python36_record}
+rm -rf %{buildroot}%{python36_sitelib}/setuptools/tests
 
-%py2_install
+%py2_install_wheel %{python2_wheelname}
 rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 
 %if %{with tests}
 %check
 %{__python2} runtests.py -vv
-%{__python3} runtests.py -vv
+%{__python36} runtests.py -vv
 %endif
 
 %files -n python2-%{srcname}
@@ -94,24 +106,28 @@ rm -rf %{buildroot}%{python2_sitelib}/setuptools/tests
 %{_bindir}/cython
 %{_bindir}/cygdb
 %{_bindir}/cythonize
-%{python2_sitearch}/%{srcname}-*.egg-info/
+%{python2_sitearch}/%{srcname}-*
 %{python2_sitearch}/%{srcname}/
 %{python2_sitearch}/pyximport/
 %{python2_sitearch}/%{upname}.py*
 
-%files -n python3-%{srcname}
+%files -n python36u-%{srcname}
 %license LICENSE.txt
 %doc *.txt Demos Doc Tools
-%{_bindir}/cython3
-%{_bindir}/cythonize3
-%{_bindir}/cygdb3
-%{python3_sitearch}/%{srcname}-*.egg-info/
-%{python3_sitearch}/%{srcname}/
-%{python3_sitearch}/pyximport/
-%{python3_sitearch}/%{upname}.py
-%{python3_sitearch}/__pycache__/%{upname}.*
+%{_bindir}/cython%{python36_version}
+%{_bindir}/cythonize%{python36_version}
+%{_bindir}/cygdb%{python36_version}
+%{python36_sitearch}/%{srcname}-*
+%{python36_sitearch}/%{srcname}/
+%{python36_sitearch}/pyximport/
+%{python36_sitearch}/%{upname}.py
+%{python36_sitearch}/__pycache__/%{upname}.*
 
 %changelog
+* Wed Aug 09 2017 Frankie Dintino <fdintino@theatlantic.com> - 0.25.2-8
+- Added python 3.6 IUS package
+- Build using wheels
+
 * Wed Aug 02 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.25.2-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
